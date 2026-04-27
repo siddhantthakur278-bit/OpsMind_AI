@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  
+  --color-railway-dark: #0B0A10;
+  --color-railway-card: #13111C;
+  --color-railway-border: rgba(255, 255, 255, 0.08);
+  --color-railway-accent: #6E56CF;
+  --color-railway-accentHover: #5E4B8B;
+  --color-railway-textMain: #F8F8F8;
+  --color-railway-textMuted: #A09FA6;
+  
+  --shadow-glow: 0 0 20px rgba(110, 86, 207, 0.15);
+  --shadow-glow-strong: 0 0 30px rgba(110, 86, 207, 0.3);
+}
+
+:root {
+  background-color: var(--color-railway-dark);
+  color: var(--color-railway-textMain);
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+#root {
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-railway-card);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-railway-textMuted);
+}

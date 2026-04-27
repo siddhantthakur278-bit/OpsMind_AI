@@ -1,0 +1,16 @@
+{
+  "name": "opsmind-ai",
+  "version": "1.0.0",
+  "description": "Enterprise SOP RAG Agent",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "concurrently \"npm run dev --prefix client\" \"nodemon server/server.js\"",
+    "client": "npm run dev --prefix client",
+    "server": "nodemon server/server.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.0"
+  }
+}
