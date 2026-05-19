@@ -4,6 +4,7 @@ const cors = require('cors');
 const uploadRouter = require('./routes/upload');
 const queryRouter = require('./routes/query');
 const authRouter = require('./routes/auth');
+const feedbackRouter = require('./routes/feedback');
 const { requireAuth } = require('./lib/authMiddleware');
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // ── Routes ──────────────────────────────────────────────────────────────────
 app.use('/api/auth', authRouter);
+app.use('/api/feedback', feedbackRouter);
 app.use('/api/upload', requireAuth, uploadRouter);
 app.use('/api/query', requireAuth, queryRouter);
 
@@ -37,8 +39,8 @@ app.use((err, _req, res, _next) => {
     // There isn't a direct listModels in the SDK for API keys usually, 
     // but we can try to initialize one to verify it doesn't immediately crash.
     console.log('[Gemini] Initializing models...');
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
-    console.log('[Gemini] Model "gemini-2.5-flash" is configured');
+    const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
+    console.log('[Gemini] Model "gemini-flash-latest" is configured');
   } catch (err) {
     console.warn('[Gemini Warn] Could not pre-verify model:', err.message);
   }

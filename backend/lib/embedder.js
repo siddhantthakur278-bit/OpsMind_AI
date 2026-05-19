@@ -2,8 +2,8 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Use gemini-embedding-2-preview with explicit 768 dims to match MongoDB Atlas vector index
-const EMBEDDING_MODEL = 'gemini-embedding-2-preview';
+// Use gemini-embedding-2 with explicit 768 dims to match MongoDB Atlas vector index
+const EMBEDDING_MODEL = 'gemini-embedding-2';
 const OUTPUT_DIMENSIONALITY = 768;
 
 /**

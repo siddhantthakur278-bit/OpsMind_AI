@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 
     // 4. Stream response from Gemini
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-flash-latest',
       systemInstruction: SYSTEM_PROMPT,
     });
 
