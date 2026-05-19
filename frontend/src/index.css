@@ -31,6 +31,20 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+.light {
+  --color-bg-base: #f8fafc;
+  --color-bg-surface: #ffffff;
+  --color-bg-glass: rgba(255, 255, 255, 0.85);
+  --color-bg-elevated: rgba(255, 255, 255, 0.95);
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
+  --color-border-active: rgba(0, 212, 255, 0.5);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

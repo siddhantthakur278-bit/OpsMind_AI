@@ -87,9 +87,11 @@ export default function ChatWindow() {
         const lines = buffer.split('\n');
         buffer = lines.pop(); // keep incomplete line
 
-        for (const line of lines) {
-          if (!line.trim() || !line.startsWith('data: ')) continue;
-          const dataStr = line.slice(6).trim();
+        for (let line of lines) {
+          line = line.trim();
+          if (!line || !line.startsWith('data:')) continue;
+          
+          const dataStr = line.replace(/^data:\s*/, '').trim();
           if (!dataStr) continue;
 
           let parsed;
@@ -245,7 +247,7 @@ export default function ChatWindow() {
           </button>
         </div>
         <p className="text-[0.7rem] text-text-muted text-center mt-2">
-          Shift+Enter for new line · Powered by Gemini 2.5 Flash + MongoDB Atlas
+          Shift+Enter for new line · Powered by Gemini Flash + MongoDB Atlas
         </p>
       </div>
     </div>

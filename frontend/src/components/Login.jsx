@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Login({ onLogin }) {
+export default function Login({ onLogin, onBack }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [otp, setOtp] = useState('');
@@ -83,6 +83,15 @@ export default function Login({ onLogin }) {
     <div className="flex items-center justify-center h-screen w-screen relative overflow-hidden bg-bg-base">
       <div className="absolute w-[600px] h-[600px] bg-gradient-to-br from-brand-cyan to-brand-purple rounded-full filter blur-[120px] opacity-15 animate-orb-drift z-0" />
       <div className="bg-bg-glass backdrop-blur-[24px] border border-border-subtle rounded-[28px] p-12 w-full max-w-[440px] z-10 shadow-[0_4px_24px_rgba(0,0,0,0.5),0_0_40px_rgba(0,212,255,0.1)] flex flex-col gap-8 relative overflow-hidden">
+        
+        {onBack && (
+          <button 
+            onClick={onBack}
+            className="absolute top-6 left-6 text-text-muted hover:text-white transition-colors bg-transparent border-none text-[1.2rem] cursor-pointer"
+          >
+            ←
+          </button>
+        )}
 
         {/* Loading Overlay */}
         {loading && (
@@ -95,7 +104,7 @@ export default function Login({ onLogin }) {
           <div className="w-[54px] h-[54px] rounded-2xl bg-gradient-to-br from-brand-cyan to-brand-purple flex items-center justify-center text-[26px] font-extrabold text-white shadow-[0_0_30px_rgba(0,212,255,0.15)]">O</div>
           <h1 className="text-[1.6rem] font-extrabold text-gradient-brand">OpsMind AI</h1>
           <p className="text-[0.9rem] text-text-secondary">
-            {step === 1 ? 'Sign in to your enterprise workspace' : 'Enter the verification code'}
+            {step === 1 ? 'Sign in to your workspace' : 'Enter the verification code'}
           </p>
         </div>
 
@@ -105,12 +114,12 @@ export default function Login({ onLogin }) {
         {step === 1 ? (
           <form onSubmit={handleLoginOrSignup} className="flex flex-col gap-5">
             <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="text-[0.8rem] font-semibold text-text-primary">Work Email</label>
+              <label htmlFor="email" className="text-[0.8rem] font-semibold text-text-primary">Email Address</label>
               <input
                 type="email"
                 id="email"
                 className="bg-[rgba(0,0,0,0.2)] border border-border-subtle rounded-[14px] p-3 px-4 text-text-primary text-[0.95rem] font-inter outline-none transition-all duration-220 focus:border-brand-cyan focus:shadow-[0_0_0_3px_rgba(0,212,255,0.15)] focus:bg-[rgba(0,212,255,0.03)]"
-                placeholder="name@company.com"
+                placeholder="name@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required

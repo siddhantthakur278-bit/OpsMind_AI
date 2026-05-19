@@ -2,15 +2,16 @@ import { useState, useEffect } from 'react';
 import AdminUpload from './components/AdminUpload';
 import ChatWindow from './components/ChatWindow';
 import Login from './components/Login';
+import Home from './components/Home';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentView, setCurrentView] = useState('home');
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('opsmind_token');
     if (token) {
-      setIsLoggedIn(true);
+      setCurrentView('app');
     }
   }, []);
 
@@ -23,9 +24,13 @@ export default function App() {
     });
   };
 
-  // ── Unauthenticated State ──
-  if (!isLoggedIn) {
-    return <Login onLogin={() => setIsLoggedIn(true)} />;
+  // ── View Rendering ──
+  if (currentView === 'home') {
+    return <Home onNavigate={setCurrentView} />;
+  }
+
+  if (currentView === 'login') {
+    return <Login onLogin={() => setCurrentView('app')} onBack={() => setCurrentView('home')} />;
   }
 
   // ── Authenticated State ──
@@ -45,7 +50,7 @@ export default function App() {
           <div className="flex items-center gap-2">
             <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded-full bg-[rgba(0,212,255,0.1)] text-brand-cyan border border-[rgba(0,212,255,0.2)] tracking-wider uppercase">RAG</span>
             <span className="text-[0.65rem] font-bold px-2 py-0.5 rounded-full bg-[rgba(139,92,246,0.1)] text-[#8b5cf6] border border-[rgba(139,92,246,0.2)] tracking-wider uppercase">
-              Gemini 2.5
+              Gemini Flash
             </span>
             <div className="w-[8px] h-[8px] rounded-full bg-brand-emerald shadow-[0_0_8px_#10b981] animate-pulse-dot" />
             <span>Live</span>
@@ -56,7 +61,7 @@ export default function App() {
           <button
             onClick={() => {
               localStorage.removeItem('opsmind_token');
-              setIsLoggedIn(false);
+              setCurrentView('home');
             }}
             className="text-text-muted hover:text-white cursor-pointer transition-colors bg-transparent border-none font-semibold text-[0.75rem]"
           >
